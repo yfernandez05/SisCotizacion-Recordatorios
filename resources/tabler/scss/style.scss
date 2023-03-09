@@ -1,0 +1,144 @@
+// Fonts
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
+//toast
+@import '~jquery-toast-plugin/dist/jquery.toast.min.css';
+//fonts
+@import 'variables';
+//fonts
+@import 'fonts';
+
+$fa-font-path: "../webfonts";
+
+
+// importing core styling file
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+
+
+
+$font-family-sans-serif:     'Poppins', sans-serif !default; 
+body{
+  font-family: $font-family-sans-serif;
+}
+/*login*/
+.login-cover{
+    background-image: url(../images/background/login/bg-login.jpg);
+}
+
+/*snipet*/
+@keyframes fade-in-top {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+.active-preload{
+    animation: fade-in-top 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transition: all 0.5s;
+}
+.preloader {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: fixed;
+    z-index: 99999;
+    background: rgb(36 48 73 / 32%);
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.20s;
+}
+.loader__label{
+    position: absolute;
+    margin-top: 8em;
+    font-weight: bold;
+}
+.loader {
+    transform: rotateZ(45deg);
+    perspective: 1000px;
+    border-radius: 50%;
+    width: 78px;
+    height: 78px;
+    color: #fff;
+  }
+    .loader:before,
+    .loader:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: inherit;
+      height: inherit;
+      border-radius: 50%;
+      transform: rotateX(70deg);
+      animation: 1s spin linear infinite;
+    }
+    .loader:after {
+      color: $themecolor-secondary;
+      transform: rotateY(70deg);
+      animation-delay: .4s;
+    }
+
+  @keyframes rotate {
+    0% {
+      transform: translate(-50%, -50%) rotateZ(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotateZ(360deg);
+    }
+  }
+
+  @keyframes rotateccw {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(-360deg);
+    }
+  }
+
+  @keyframes spin {
+    0%,
+    100% {
+      box-shadow: .5em 0px 0 0px currentcolor;
+    }
+    12% {
+      box-shadow: .5em .2em 0 0 currentcolor;
+    }
+    25% {
+      box-shadow: 0 .2em 0 0px currentcolor;
+    }
+    37% {
+      box-shadow: -.5em .2em 0 0 currentcolor;
+    }
+    50% {
+      box-shadow: -.5em 0 0 0 currentcolor;
+    }
+    62% {
+      box-shadow: -.2em -.5em 0 0 currentcolor;
+    }
+    75% {
+      box-shadow: 0px -.5em 0 0 currentcolor;
+    }
+    87% {
+      box-shadow: .2em -.2em 0 0 currentcolor;
+    }
+  }
+
+  .footer-cont{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
