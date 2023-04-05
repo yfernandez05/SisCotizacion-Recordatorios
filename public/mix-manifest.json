@@ -316,8 +316,12 @@
     "/fonts/Poppins-SemiBoldItalic.otf": "/fonts/Poppins-SemiBoldItalic.otf",
     "/fonts/Poppins-Thin.otf": "/fonts/Poppins-Thin.otf",
     "/fonts/Poppins-ThinItalic.otf": "/fonts/Poppins-ThinItalic.otf",
+    "/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf": "/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf",
+    "/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2": "/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2",
     "/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf": "/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf",
     "/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2": "/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2",
     "/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf": "/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf",
-    "/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2": "/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2"
+    "/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2": "/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2",
+    "/fonts/vendor/@fortawesome/fontawesome-free/webfa-v4compatibility.ttf": "/fonts/vendor/@fortawesome/fontawesome-free/webfa-v4compatibility.ttf",
+    "/fonts/vendor/@fortawesome/fontawesome-free/webfa-v4compatibility.woff2": "/fonts/vendor/@fortawesome/fontawesome-free/webfa-v4compatibility.woff2"
 }

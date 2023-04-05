@@ -22,6 +22,7 @@ class ClienteController extends BaseController
         $perpage = $this->getLimitPagination($request);
 
         $cliente = Cliente::where($filters)
+            ->with('tipodocumento')
             ->orderBy('codcliente', 'DESC')
             ->paginate($perpage);
             
@@ -78,7 +79,7 @@ class ClienteController extends BaseController
      */
     public function show($id)
     {
-        return Cliente::find($id);
+        return Cliente::with('tipodocumento')->find($id);
     }
 
     /**
@@ -137,5 +138,26 @@ class ClienteController extends BaseController
         $cliente->email = $request->email;
         
         return $cliente;
+    }
+
+    public function select(Request $request){
+
+        $filter = '%'.$request->filter.'%';
+
+        $clientes = Cliente::where('estado','A')
+            // ->Where('nombrecl','like',$filter)
+            // ->orWhere('appaternocl','like',$filter)
+            // ->orWhere('apmaternocl','like',$filter)
+            // ->orWhere('nrodocumento','like',$filter)
+            ->whereRaw("concat(nombrecliente,' ' ,COALESCE(appaternocl, ''), ' ', COALESCE(apmaternocl, '')) like ?", [$filter])
+            ->with('tipodocumento')
+            // ->orWhereHas('tipodocumento', function($query) use ($filter){
+            //     $query->where('estado','A')
+            //         ->where('nombre','like', $filter);
+            // })
+            ->orderBy('nombrecliente', 'ASC')
+            ->get();
+
+        return $clientes;
     }
 }

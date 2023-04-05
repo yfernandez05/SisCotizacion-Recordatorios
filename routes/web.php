@@ -37,9 +37,27 @@ Route::prefix('rest')->middleware('auth')->name('rest.')->group(function () {
 
     Route::resource('tasainteres', 'TasaInteresController');
 
+    Route::resource('tipocomprobante', 'TipoComprobanteController');
+
+    Route::resource('tipoestadoservicio', 'TipoEstadoServicioController');
+
+    Route::get('selectgeneral', 'EstadoServicioController@selectgeneral');
+    Route::get('selectdetalle', 'EstadoServicioController@selectdetalle');
+    Route::resource('estadoservicio', 'EstadoServicioController');
+
+    Route::get('tiposervicio/select', 'TipoServicioController@select')->name('tiposervicio.select');
     Route::resource('tiposervicio', 'TipoServicioController');
 
+    Route::resource('servicio', 'ServicioController');
+
+    Route::resource('detalleservicio', 'DetalleServicioController');
+
+    Route::resource('tipodocumento', 'TipoDocumentoController');
+
+    Route::get('cliente/select', 'ClienteController@select')->name('cliente.select');
     Route::resource('cliente', 'ClienteController');
+
+
 /*
     Route::get('cuenta/select', 'CuentaController@select')->name('cuenta.select');
     Route::resource('cuenta', 'CuentaController')->except(['show', 'create']);   
@@ -104,4 +122,6 @@ Route::prefix('rest')->middleware('auth')->name('rest.')->group(function () {
     //Route::get('invitacion/obtenerid/{id}', 'InvitacionController@obtenerid');
     Route::resource('invitacion', 'InvitacionController'); */
     
+    
 });
+Route::view('/notification','emails.messageServiceSoonToExpire')->name('notification');;

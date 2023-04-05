@@ -2,6 +2,12 @@
 
 namespace App\Providers;
 
+use App\Events\ServiceNotificationExpired;
+use App\Events\ServiceNotificationSoonToExpire;
+use App\Listeners\ServiceStatusExpiredChange;
+use App\Listeners\ServiceStatusSoonToExpire;
+use App\Models\Servicio;
+use App\Observers\ServicioObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +24,16 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        
+        //Send mails and status services
+        ServiceNotificationSoonToExpire::class =>[
+            ServiceStatusSoonToExpire::class,
+        ],
+        ServiceNotificationExpired::class =>[
+            ServiceStatusExpiredChange::class,
+        ],
+
+        
     ];
 
     /**
@@ -27,6 +43,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Servicio::observe(ServicioObserver::class);
     }
 }

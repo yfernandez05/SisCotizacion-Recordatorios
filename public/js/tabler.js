@@ -228,6 +228,18 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
       currentOptions = jquery__WEBPACK_IMPORTED_MODULE_0___default().extend(true, optionsAlert, selectOptions);
     return Swal.fire(currentOptions);
   };
+  window.swalAlertRenovation = function (message, title) {
+    var selectOptions = {
+        title: title,
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Si Renovar',
+        cancelButtonText: 'Cancelar',
+        html: message
+      },
+      currentOptions = jquery__WEBPACK_IMPORTED_MODULE_0___default().extend(true, optionsAlert, selectOptions);
+    return Swal.fire(currentOptions);
+  };
 });
 
 /***/ }),

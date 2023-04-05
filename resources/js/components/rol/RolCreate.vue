@@ -12,7 +12,7 @@ export default {
         return {
             steps:[
                 {name:'Inicio', spa:'spa'},
-                {name:'Usuario', spa:'spa.rol'},
+                {name:'Rol', spa:'spa.rol'},
                 {name:'Registrar Rol',active:'active', spa:``}
             ],
             loadingholder: true,

@@ -70,7 +70,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="servi in servicios" :key="servi.codservicio">
+                            <tr v-for="servi in servicios" :key="servi.codtiposervicio">
                                 <td>
                                     <row-actions :rowData="servi" @rowItemActions="rowItemActions" :activeDelete="false" :activeShow="false">
                                         <button type="button" :title="servi.isactive ? 'Desactivar':'Activar'" @click="cambiarEstado(servi)"
@@ -80,7 +80,7 @@
                                         </button>
                                     </row-actions>
                                 </td>
-                                <td v-text="servi.codservicio"></td>
+                                <td v-text="servi.codtiposervicio"></td>
                                 <td v-text="servi.nombre"></td>
                                 <td v-text="servi.descripcion"></td>
                                 <td v-text="servi.precio"></td>
@@ -146,7 +146,8 @@
             rowItemActions(event) {
                 switch (event.action) {
                     case 'edit':
-                       this.$router.push({ name: 'spa.tiposervicio.editar', params: { id: event.data.codservicio } }) 
+                       /*  console.log(event.data); */
+                       this.$router.push({ name: 'spa.tiposervicio.editar', params: { id: event.data.codtiposervicio } }) 
                     break;
                     case 'delete':
                        this.eliminarServicio(event.data);
@@ -177,7 +178,7 @@
                         if(optionSelected.value){
                             
                         showPreloader();
-                        axios.delete(`${appApiUrl}/tiposervicio/${param.codservicio}`)
+                        axios.delete(`${appApiUrl}/tiposervicio/${param.codtiposervicio}`)
                             .then(function (response) {         
                                 hidePreloader();
                                 let result = response.data;

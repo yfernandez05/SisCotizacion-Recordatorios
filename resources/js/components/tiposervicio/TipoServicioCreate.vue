@@ -1,5 +1,5 @@
 <template>
-    <form-tipo-servicio cardTitle="Registrar Tipo Servicio" :loadingholder="loadingholder" cardSubTitle="Aqui podras registrar a un nuevo servicio rellenando el formulario" :steps="steps" @saveData="saveData">
+    <form-tipo-servicio cardTitle="Registrar Tipo Servicio" :loadingholder="loadingholder" cardSubTitle="Aqui podras registrar a un nuevo tipo de servicio rellenando el formulario" :steps="steps" @saveData="saveData">
     </form-tipo-servicio>
 </template>
 
@@ -11,7 +11,7 @@ export default {
         return {
             steps:[
                 {name:'Inicio', spa:'spa'},
-                {name:'Servicio', spa:'spa.servicio'},
+                {name:'Tipos de Servicios', spa:'spa.tiposervicio'},
                 {name:'Registrar Tipo de Servicio',active:'active', spa:``}
             ],
             loadingholder: true,

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetalleRecordatorio;
+use App\Models\DetalleServicio;
 use App\Models\TipoServicio;
 use App\Util\LogErrorManager;
 use App\Util\ResultManager;
@@ -24,7 +24,7 @@ class TipoServicioController extends BaseController
         $perpage = $this->getLimitPagination($request);
 
         $servicios = TipoServicio::where($filters)
-            ->orderBy('codservicio', 'DESC')
+            ->orderBy('codtiposervicio', 'DESC')
             ->paginate($perpage);
             
         return $servicios;
@@ -115,17 +115,17 @@ class TipoServicioController extends BaseController
         $result  = "";
         $errorMsg='No se puede eliminar. Hay Recordatorios que hacen uso de este Servicio.';
         try {
-        $numberDependents = DetalleRecordatorio::where(['codservicio'=> $id,'estado' => 'A'])->count();
+        $numberDependents = DetalleServicio::where(['codtiposervicio'=> $id,'estado' => 'A'])->count();
 
          if($numberDependents == 0){
 
-            $rol=TipoServicio::findOrFail($id);
-            $rol->estado = $rol->estado == RuleManager::DISABLED_STATE ? RuleManager::ACTIVE_STATE : RuleManager::DISABLED_STATE;
-            $rol->update();
+            $servicio=TipoServicio::findOrFail($id);
+            $servicio->estado = $servicio->estado == RuleManager::DISABLED_STATE ? RuleManager::ACTIVE_STATE : RuleManager::DISABLED_STATE;
+            $servicio->update();
 
-            if ($rol->estado == RuleManager::ACTIVE_STATE) {
+            if ($servicio->estado == RuleManager::ACTIVE_STATE) {
                 $result = ResultManager::successMessage('Servicio restaurado correctamente.');
-            } else if($rol->estado == RuleManager::DISABLED_STATE) {
+            } else if($servicio->estado == RuleManager::DISABLED_STATE) {
                 $result = ResultManager::warningMessage('Servicio eliminado correctamente.');
             }
          }else{
@@ -146,10 +146,25 @@ class TipoServicioController extends BaseController
 
     public function setModel(TipoServicio $servicio,Request $request): TipoServicio
     {
+        if($request->descripcion == null) $descciption = "";
+        else $descciption = $request->descripcion;
+        
         $servicio->nombre = $request->nombre;
-        $servicio->descripcion = $request->descripcion;
+        $servicio->descripcion = $descciption;
         $servicio->precio = $request->precio;
         return $servicio;
 
+    }
+
+    public function select(Request $request){
+
+        $filter = '%'.$request->filter.'%';
+
+        $tipoServicio = TipoServicio::where('estado','A')
+            ->whereRaw("concat(nombre,' ',descripcion) like ?", [$filter])
+            ->orderBy('nombre', 'ASC')
+            ->get();
+
+        return $tipoServicio;
     }
 }

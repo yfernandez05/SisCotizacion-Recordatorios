@@ -11,9 +11,15 @@ import Rol from './components/rol/RolIndex.vue';
 import RolCreate from './components/rol/RolCreate.vue';
 import RolEdit from './components/rol/RolEdit.vue';
 import LogError from './components/logerror/LogErrorIndex.vue';
+import EstadoServicio from './components/estadoservicio/EstadoServicioIndex.vue';
+import EstadoServicioCreate from './components/estadoservicio/EstadoServicioCreate.vue';
+import EstadoServicioEdit from './components/estadoservicio/EstadoServicioEdit.vue';
 import TipoServicio from './components/tiposervicio/TipoServicioIndex.vue';
 import TipoServicioCreate from './components/tiposervicio/TipoServicioCreate.vue';
 import TipoServicioEdit from './components/tiposervicio/TipoServicioEdit.vue';
+import TipoDocumento from './components/tipodocumento/TipoDocumentoIndex.vue';
+import TipoDocumentoCreate from './components/tipodocumento/TipoDocumentoCreate.vue';
+import TipoDocumentoEdit from './components/tipodocumento/TipoDocumentoEdit.vue';
 import Cliente from './components/cliente/ClienteIndex.vue';
 import ClienteCreate from './components/cliente/ClienteCreate.vue';
 import ClienteEdit from './components/cliente/ClienteEdit.vue';
@@ -75,6 +81,21 @@ export default new VueRouter({
             component: User,
         },
         {
+            path: `${intranetBaseUrl}/estadoservicio`,
+            name: 'spa.estadoservicio',
+            component: EstadoServicio,
+        },
+        {
+            path: `${intranetBaseUrl}/estadoservicio/registrar`,
+            name: 'spa.estadoservicio.registrar',
+            component: EstadoServicioCreate,
+        },
+        {
+            path: `${intranetBaseUrl}/estadoservicio/editar/:id`,
+            name: 'spa.estadoservicio.editar',
+            component: EstadoServicioEdit,
+        },
+        {
             path: `${intranetBaseUrl}/tiposervicio`,
             name: 'spa.tiposervicio',
             component: TipoServicio,
@@ -88,6 +109,21 @@ export default new VueRouter({
             path: `${intranetBaseUrl}/tiposervicio/editar/:id`,
             name: 'spa.tiposervicio.editar',
             component: TipoServicioEdit,
+        },
+        {
+            path: `${intranetBaseUrl}/tipodocumento`,
+            name: 'spa.tipodocumento',
+            component: TipoDocumento,
+        },
+        {
+            path: `${intranetBaseUrl}/tipodocumento/registrar`,
+            name: 'spa.tipodocumento.registrar',
+            component: TipoDocumentoCreate,
+        },
+        {
+            path: `${intranetBaseUrl}/tipodocumento/editar/:id`,
+            name: 'spa.tipodocumento.editar',
+            component: TipoDocumentoEdit,
         },
         {
             path: `${intranetBaseUrl}/cliente`,
@@ -117,7 +153,7 @@ export default new VueRouter({
         {
             path: `${intranetBaseUrl}/servicio/editar/:id`,
             name: 'spa.servicio.editar',
-            component: TipoServicioEdit,
+            component: ServicioEdit,
         },
        /*  { 
             path: `${intranetBaseUrl}/dashboard`,

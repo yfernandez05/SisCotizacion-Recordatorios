@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group form-group-sm col-12 col-sm-6 col-md-4 mb-3">
                     <label class="form-label">T. Doc. Identidad</label>
-                    <span class="form-control text-truncate text-muted" v-text="cliente.codtipodoc"></span>
+                    <span class="form-control text-truncate text-muted" v-text="cliente.tipodocumento.nombre"></span>
                 </div>
                 <div class="form-group form-group-sm col-12 col-sm-6 col-md-4 mb-3">
                     <label class="form-label">Nº Doc. Identidad</label>

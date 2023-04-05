@@ -34,16 +34,16 @@
                     <h4>Fecha de captura</h4>
                     <div>
                         <pre><code>{{itemlog.dateoccurred}}</code></pre>
+                    </div>                    
+                    <h4>Petición y controlador</h4>
+                    <div>
+                        <pre>{{itemlog.methodname}} - {{itemlog.classname}}</pre>
                     </div>
-                        <h4>Mensaje Error</h4>
+                    <h4>Mensaje Error</h4>
                     <div>
                         <pre style="white-space: pre-line;">
                             {{itemlog.errormessage}}
                         </pre>
-                    </div>
-                    <h4>Petición y controlador</h4>
-                    <div>
-                        <pre>{{itemlog.methodname}} - {{itemlog.classname}}</pre>
                     </div>
                 </div>
             </a>

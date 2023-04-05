@@ -6,28 +6,14 @@ use App\Util\RuleManager;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DetalleRecordatorio extends Model
+class TipoDocumento extends Model
 {
-    protected $table = 'detallerecordatorios';
-    protected $primaryKey = 'id';
+    protected $table = 'tipodocumento';
+    protected $primaryKey = 'iddocumento';
     public $timestamps = false;
 
 
-    protected $fillable = [
-        'codrecordatorio',
-        'posicion',
-        'codservicio',
-        'tipoprecio',
-        'refe_url_servicio',
-        'descripcion_servicio',
-        'cantidad',
-        'precio',
-        'importe',
-        'fecha_anticipado',
-        'fecha_contratacion',
-        'fecha_expiracion',
-        'estado',
-    ];
+    protected $fillable = ['nombre','estado'];
 
     protected $hidden = [
         'userinsert', 

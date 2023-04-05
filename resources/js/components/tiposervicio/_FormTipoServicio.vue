@@ -24,8 +24,8 @@
                         <label class="form-label">Precio <small class="text-danger">(*)</small></label>
                         <div class="input-group">
                         <!--  <input type="text" class="form-control" v-model="impuestoigv.igv"/><span class="input-group-text">%</span> --> 
-                                <vue-numeric class="form-control" thousand-separator="" v-model="servicio.precio"
-                                currency="S/." v-bind:precision="2">
+                            <vue-numeric class="form-control"  v-bind:precision="2" thousand-separator="" v-model="servicio.precio"
+                                currency="S/.">
                             </vue-numeric>
                         </div>
                         <small class="form-control-feedback" v-if="errorExists('precio')" v-text="showError('precio').errorDetail"></small>
@@ -92,7 +92,7 @@
                 default: function () {
                     return {
                         nombre: '',
-                        descripcion: '',
+                        descripcion: " ",
                         precio: 0,
                     }
                 }

@@ -105,7 +105,7 @@
                 default: 'Cliente'
             },
             cardSubTitle: {
-                default: 'Información para Editar'
+                default: 'Información para Crear'
             },
             cliente: {
                 type: Object,
@@ -114,6 +114,7 @@
                         nombre: '',
                         nombrecliente: '',
                         apmaternocl: '',
+                        tipodocumento: '',
                         coducmento: '',
                         pais: '',
                         direccion: '',
@@ -138,6 +139,7 @@
                     nombrecliente: this.cliente.nombrecliente,
                     appaternocl: this.cliente.appaternocl,
                     apmaternocl: this.cliente.apmaternocl,
+                    tipodocumento: this.cliente.tipodocumento,
                     coducmento: this.cliente.coducmento,
                     pais: this.cliente.pais,
                     direccion: this.cliente.direccion,

@@ -24008,11 +24008,25 @@ Antialiasing
   -moz-osx-font-smoothing: auto;
 }
 
-body.theme-dark .select2-container--default .select2-selection--single ,body.theme-dark .select2-dropdown{
+body.theme-dark .select2-container--default .select2-selection--single ,
+body.theme-dark .select2-dropdown,
+body.theme-dark .vs__dropdown-toggle,
+body.theme-dark .vs__dropdown-menu{
   background-color: #132232;
 }
-body.theme-dark .select2-container--default .select2-selection--single .select2-selection__rendered, body.theme-dark .select2-container--default .select2-selection--single .select2-selection__clear{
+body.theme-dark .select2-container--default .select2-selection--single .select2-selection__rendered, 
+body.theme-dark .select2-container--default .select2-selection--single .select2-selection__clear,
+body.theme-dark .vs__selected{
   color: white;
+}
+body.theme-dark .vs__spinner {
+  border: 0.9em solid hsl(0deg 0% 78% / 28%);
+  border-left-color: rgb(255 255 255);  
+} 
+
+body.theme-dark .vs__clear, 
+body.theme-dark .vs__open-indicator{
+  fill: white;
 }
 
 .action-row .btn{
@@ -24023,11 +24037,20 @@ body.theme-dark .select2-container--default .select2-selection--single .select2-
   display: flow-root;
 }
 
-.has-danger .select2-container--default .select2-selection--single, .has-danger .form-control{
+.has-danger .select2-container--default .select2-selection--single, .has-danger .form-control ,.has-danger .vs__dropdown-toggle{
     border-color: #e46a76;
 }
 .form-control-feedback{
   color:#e46a76;
+}
+
+label.form-selectgroup-item.has-danger{
+  border: 1px solid #e46a76;
+  border-radius: 3px;
+}
+
+.form-selectgroup-label{
+  width: 11vw;
 }
 
 li.nav-item a.nav-link:has(a.dropdown-item.active){
@@ -24048,4 +24071,28 @@ li.nav-item:has(a.dropdown-item.active):after{
 }
 .ui-max-w-100 {
   max-width: 100px;
+}
+
+.badge.badge-pill {
+    padding: 0.4em 1em;
+}
+
+.v-select .vs__actions {
+  cursor: pointer;
+
+  }
+
+.vs__dropdown-toggle {
+  padding: 4px 0 6px 0;
+
+}
+.v-select-lg .vs__selected{
+  font-size: .9rem;
+}
+.vs__search, .vs__search:focus{
+  font-size: inherit !important;
+}
+
+.form-control-sm{
+  padding: 0.33rem 0.75rem;
 }

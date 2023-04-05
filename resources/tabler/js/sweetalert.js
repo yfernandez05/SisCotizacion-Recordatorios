@@ -38,4 +38,18 @@ $(document).ready(function () {
 
         return Swal.fire(currentOptions);
     }
+
+    window.swalAlertRenovation = function (message, title) {
+        let selectOptions = {
+                title: title,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Si Renovar',
+                cancelButtonText: 'Cancelar',
+                html: message,
+            },
+            currentOptions = $.extend(true, optionsAlert, selectOptions);
+
+        return Swal.fire(currentOptions);
+    }
 });

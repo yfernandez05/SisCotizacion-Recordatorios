@@ -87,8 +87,8 @@
                                 </td>
                                 <td v-text="cli.codcliente"></td>
                                 <td class="text-nowrap" v-text="cli.nombrecliente"></td>
-                                <td class="text-nowrap" v-text="cli.appaternocl+' '+cli.apmaternocl"></td>
-                                <td v-text="cli.codtipodoc"></td>
+                                <td class="text-nowrap" v-text="cli.nombrecompleto"></td>
+                                <td v-text="cli.tipodocumento.nombre"></td>
                                 <td v-text="cli.coducmento"></td>
                                 <td v-text="cli.pais"></td>
                                 <td class="ui-max-w-200 text-truncate" v-text="cli.direccion"></td>

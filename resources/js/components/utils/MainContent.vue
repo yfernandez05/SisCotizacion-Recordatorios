@@ -1,5 +1,5 @@
 <template>
-    <div class="container-xl">
+    <div class="container-fluid px-3">
         <div class="row row-cards justify-content-center">
             <div :class="columnClass">
                 <div class="card">

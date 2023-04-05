@@ -12,22 +12,22 @@
                 servicio: {},
                 steps:[
                     {name:'Inicio', spa:'spa'},
-                    {name:'Servicio', spa:'spa.servicio'},
+                    {name:'Servicio', spa:'spa.tiposervicio'},
                     {name:'Editar Servicio', active:'active', spa:``}
                 ],
                 loadingholder: true,
             }
         },
         created() {
-            this.servicio.codservicio = this.$route.params.id;
+            this.servicio.codtiposervicio = this.$route.params.id;
 
-            if (isNaN(this.servicio.codservicio)) {
+            if (isNaN(this.servicio.codtiposervicio)) {
                 this.$router.push({
-                    name: 'spa.servicio'
+                    name: 'spa.tiposervicio'
                 });
             }
 
-            this.obtenerServicio(this.servicio.codservicio);
+            this.obtenerServicio(this.servicio.codtiposervicio);
         },
         methods: {
             obtenerServicio(id) {
@@ -61,7 +61,7 @@
                 showPreloader();
                
                 let vm = this;
-                axios.put(`${appApiUrl}/servicio/${this.servicio.codservicio}`, event)
+                axios.put(`${appApiUrl}/tiposervicio/${this.servicio.codtiposervicio}`, event)
                     .then(function (response) {
                         hidePreloader();
          
@@ -71,7 +71,7 @@
                             successMessage(result.message, appName);
 
                             vm.$router.push({
-                                name: 'spa.servicio'
+                                name: 'spa.tiposervicio'
                             });
                         } else
                             errorMessage(result.message, appName);

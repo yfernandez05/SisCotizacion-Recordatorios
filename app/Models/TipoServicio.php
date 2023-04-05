@@ -13,7 +13,7 @@ class TipoServicio extends Model
     public $timestamps = false;
 
 
-    protected $fillable = ['nombre', 'descripcion', 'precio'];
+    protected $fillable = ['nombre', 'descripcion', 'precio', 'estado'];
 
     protected $hidden = [
         'userinsert', 

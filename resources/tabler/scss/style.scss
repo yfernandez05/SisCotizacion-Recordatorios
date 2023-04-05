@@ -17,6 +17,9 @@ $fa-font-path: "../webfonts";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
 
+// importing styling v-select
+@import 'vue-select/dist/vue-select.css';
+
 
 $font-family-sans-serif:     'Poppins', sans-serif !default; 
 body{
@@ -142,3 +145,7 @@ body{
       flex-direction: column;
       align-items: center;
     }
+
+    .mx-datepicker{
+      width: 100%;
+    }    

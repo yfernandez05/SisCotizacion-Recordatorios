@@ -9,15 +9,16 @@
 - vue-select
 - vue2-datepicker
 - vue-loader
+- vue-native-color-picker
 
 
 ------------
 
 ### Security Vulnerabilities
-Dashboard: **[TABLER](https://tabler.io/)**
-Bootstrap 5 misma plantilla *No dependencia*
-Laravel 8 *(scaffolding auth)*
-Vue.js 2.6
+- Dashboard: **[TABLER](https://tabler.io/)**
+- Bootstrap 5 misma plantilla *No dependencia*
+- Laravel 8 *(scaffolding auth)*
+- Vue.js 2.6
 
 ------------
 *NOTA*: ***Al realizar una nueva actuliazacion del sistema una vez concluido desplegarlo en una nueva rama***

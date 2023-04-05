@@ -3,7 +3,7 @@
         <div class="navbar navbar-light">
             <div class="container-xl">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{url('/')}}">
                             <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -82,9 +82,9 @@
                                     <router-link :to="{name: 'spa.rol'}" class="dropdown-item">
                                         Rol
                                     </router-link>
-                                    <a class="dropdown-item" href="./layout-boxed.html">
+                                    <!-- <a class="dropdown-item" href="./layout-boxed.html">
                                         Importar Registros
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                         </div>
@@ -112,6 +112,9 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
+                                    <router-link :to="{name: 'spa.estadoservicio'}"  class="dropdown-item">
+                                        Estado de Servicio
+                                    </router-link>
                                     <router-link :to="{name: 'spa.tiposervicio'}"  class="dropdown-item">
                                         Tipo de servicio
                                     </router-link>
@@ -143,12 +146,12 @@
                         <div class="dropdown-menu">
                             <div class="dropdown-menu-columns">
                                 <div class="dropdown-menu-column">
-                                    <router-link :to="{name: 'spa.cliente'}" class="dropdown-item">
-                                        Clientes
+                                    <router-link :to="{name: 'spa.tipodocumento'}" class="dropdown-item">
+                                        Documento de Identidad
                                     </router-link>
-                                    <a class="dropdown-item" href="./layout-boxed.html">
-                                        Registro de clientes
-                                    </a>
+                                    <router-link :to="{name: 'spa.cliente'}" class="dropdown-item">
+                                        Registro Clientes
+                                    </router-link>
                                 </div>
                             </div>
                         </div>

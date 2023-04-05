@@ -16,6 +16,16 @@ class RuleManager
     const UNATTENDED_STATE_TYPE = 1;
     const STANDARD_ACCESS = [3];
     const ASESOR_ACCESS = [5];
+    const STATUS_SERVICES = [
+        'VIGENTE' => 1,
+        'PRONTO_VENCER' => 2,
+        'VENCIDO' => 3,
+    ];
+    const STATUS_DETAILS_SERVICES = [
+        'VIGENTE' => 4,
+        'PRONTO_VENCER' => 5,
+        'VENCIDO' => 6,
+    ];
 
     public static function getStateName($state = self::DISABLED_STATE)
     {

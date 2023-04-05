@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DetalleRecordatorio;
+use App\Models\DetalleServicio;
+use App\Util\RuleManager;
 use Illuminate\Http\Request;
 
-class DetalleRecordatorioController extends Controller
+class DetalleServicioController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class DetalleRecordatorioController extends Controller
      */
     public function index()
     {
-        //
+        //return DetalleServicio::with('tiposervicio')->get();
     }
 
     /**
@@ -31,22 +32,26 @@ class DetalleRecordatorioController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\DetalleRecordatorio  $detalleRecordatorio
+     * @param  \App\Models\DetalleServicio  $detalleServicio
      * @return \Illuminate\Http\Response
      */
-    public function show(DetalleRecordatorio $detalleRecordatorio)
+    public function show($id)
     {
-        //
+        $detalleServicio = DetalleServicio::where(['codservicio' => $id, 'estado' => RuleManager::ACTIVE_STATE])
+        ->with('tiposervicio','estadoservicio')
+        ->get();
+
+        return $detalleServicio;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DetalleRecordatorio  $detalleRecordatorio
+     * @param  \App\Models\DetalleServicio  $detalleServicio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DetalleRecordatorio $detalleRecordatorio)
+    public function update(Request $request, DetalleServicio $detalleServicio)
     {
         //
     }
@@ -54,10 +59,10 @@ class DetalleRecordatorioController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\DetalleRecordatorio  $detalleRecordatorio
+     * @param  \App\Models\DetalleServicio  $detalleServicio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DetalleRecordatorio $detalleRecordatorio)
+    public function destroy(DetalleServicio $detalleServicio)
     {
         //
     }

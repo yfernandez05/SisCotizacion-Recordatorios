@@ -1,6 +1,6 @@
 <template>
     <div class="modal modal-blur fade" id="modal-detail" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-dialog-centered" :class="modalSize" role="document">
         <div class="modal-content" v-if="showModal">
             <div class="modal-header">
                 <h5 class="modal-title"><slot name="modal-header-title"></slot></h5>
@@ -27,7 +27,7 @@ export default {
     
     props: {
         modalSize: {
-            default: ''
+            default: 'modal-lg'
         },
         headerBgClass:{
             default: 'bg-info'
