@@ -127,6 +127,7 @@ class ServicioController extends BaseController
             if ($detalleUpdate) {
                 $detalleUpdate->save();
             }
+            //return dd($request);
 
             // Agregar los nuevos detalles de servicio del formulario.
             $detallesNuevos = array_filter($request->serviciodetalles, function($detalle) {
@@ -234,8 +235,9 @@ class ServicioController extends BaseController
 
     public function setModelDetalleUdate($serviciodetalles){
         
+        $detallesModificados = 0;
         foreach ($serviciodetalles as $detalle) {
-            if (isset($detalle['id'])) {
+            if (isset($detalle['id']) && isset($detalle['changed']) && $detalle['changed'] === true) {
                 $detalleExistente = DetalleServicio::find($detalle['id']);
                 if (!empty($detalleExistente)) {
                     // Aquí actualizamos algunos datos del detalle existente con los datos del formulario.
@@ -253,9 +255,13 @@ class ServicioController extends BaseController
                         'frecuencia_recordatorio_fecha' => $detalle['frecuencia_recordatorio_fecha'],
                     ]);
                     $detalleExistente->save();
-                    return $detalleExistente; // Devolvemos la instancia única actualizada.
+                    $detallesModificados++;
                 }
             }
+        }
+
+        if ($detallesModificados > 0) {
+            // Si se modificó al menos un detalle, realizamos alguna acción adicional.
         }
         return null; // Devolvemos null si no se encontró ninguna instancia para actualizar.
 

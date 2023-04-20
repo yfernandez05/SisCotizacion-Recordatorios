@@ -70,7 +70,7 @@
                         <tbody>
                             <tr v-for="tipdoc in tipodocumentos" :key="tipdoc.iddocumento">
                                 <td>
-                                    <row-actions :rowData="tipdoc" @rowItemActions="rowItemActions" :activeDelete="false" :activeShow="false">
+                                    <row-actions :rowData="tipdoc" @rowItemActions="rowItemActions" :activeDelete="false" :activeShow="false" v-if="tipdoc.iddocumento > 1">
                                         <button type="button" :title="tipdoc.isactive ? 'Desactivar':'Activar'" @click="cambiarEstado(tipdoc)"
                                             class="btn btn-sm  waves-effect waves-light border-0 mr-1"
                                             :class="tipdoc.isactive ? 'btn-outline-danger':'btn-outline-success'">

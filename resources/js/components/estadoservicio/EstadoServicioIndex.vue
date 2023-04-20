@@ -72,7 +72,7 @@
                         <tbody>
                             <tr v-for="estServi in estadoservicios" :key="estServi.codestadoservicio">
                                 <td>
-                                    <row-actions :rowData="estServi" @rowItemActions="rowItemActions" :activeDelete="false" :activeShow="false">
+                                    <row-actions v-if="estServi.codestadoservicio > 6" :rowData="estServi" @rowItemActions="rowItemActions" :activeDelete="false" :activeShow="false">
                                         <button type="button" :title="estServi.isactive ? 'Desactivar':'Activar'" @click="cambiarEstado(estServi)"
                                             class="btn btn-sm  waves-effect waves-light border-0 mr-1"
                                             :class="estServi.isactive ? 'btn-outline-danger':'btn-outline-success'">

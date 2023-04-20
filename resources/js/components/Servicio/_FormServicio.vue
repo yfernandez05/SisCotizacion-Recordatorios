@@ -84,19 +84,29 @@
                         <small class="form-control-feedback" v-if="errorExists('codcomprobante')"
                             v-text="showError('codcomprobante').errorDetail"></small>
                     </div> -->
-                    <div class="form-group mb-1 col-sm-4 col-md-4 col-lg-2 mb-2">
+                    <!-- <div class="form-group mb-1 col-sm-4 col-md-4 col-lg-2 mb-2">
                         <label class="mb-0">Fecha</label>
                         <v-date-picker class="mx-datepicker-sm" v-model="servicio.fecha_servicio" type="datetime"
                             format="DD-MM-YYYY" value-type="format" placeholder="Seleccione una fecha"></v-date-picker>
-                    </div>
-                    <div class="form-group col-12 col-sm-6 col-md-4 col-lg-3 mb-3" :class="{'has-danger':errorExists('codestadoservicio')}">
+                    </div> -->
+                    <!-- <div class="form-group col-12 col-sm-6 col-md-4 col-lg-3 mb-3" :class="{'has-danger':errorExists('codestadoservicio')}">
                         <label class="form-label mb-1">Estado General <small class="text-danger">(*)</small></label>
                         <select2 class="form-control-sm" :options="estadoservicios" v-model="servicio.codestadoservicio" :selectValue="servicio.codestadoservicio"
                             placeholder="Seleccione un estado del servicio" keyProperty="codestadoservicio" textProperty="nombreestadoservicio">
                         </select2>
                         <small class="form-control-feedback" v-if="errorExists('codestadoservicio')"
                             v-text="showError('codestadoservicio').errorDetail"></small>
-                    </div> 
+                    </div>  -->
+
+                    <div class="form-group col-12 col-sm-6 col-md-4 col-lg-3 mb-2" >
+                        <label class="mb-0">URL Factura</label>
+                        <div class="input-group input-group-flat">
+                            <input type="text" class="form-control" v-model="serviciodetalles.url_factura"  autocomplete="off">
+                            <span class="input-group-text">
+                                <kbd>Dirección PDF</kbd>
+                            </span>
+                        </div>
+                    </div>                   
                 </div>
                 <!--  SERVICIOS-->
 
@@ -251,7 +261,7 @@
                             <table id="servicios" class="table table-sm table-hover table-striped table-bordered mb-2">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th class="table-action-xs table-dark bg-dark text-white"></th>
+                                        <th class="table-action-xs table-dark bg-dark text-white">Acciones</th>
                                         <th v-if="isEditing" class="table-action-xs table-dark bg-dark text-white">Estado</th>
                                         <th class="table-dark bg-dark text-white" style="min-width: 250px;">Servicio</th>
                                         <th class="table-dark bg-dark text-white">F. Renovación</th>
@@ -268,6 +278,10 @@
                                             <button type="button" title="Ver Detalle" @click="showDetalle(detalle,index)"
                                                 class="btn btn-sm btn-outline-info waves-effect waves-light border-0 mr-1">
                                                 <i class="fas fa-eye fa-lg"></i>
+                                            </button>
+                                            <button v-if="isEditing" type="button" title="Editar" @click="editDetalle(detalle,index)"
+                                                class="btn btn-sm btn-outline-success waves-effect waves-light border-0 mr-1">
+                                                <i class="fas fa-marker fa-lg"></i>
                                             </button>
                                             <button type="button" title="Eliminar" @click="removeDetalle(detalle, index)"
                                                 class="btn btn-sm btn-outline-danger waves-effect waves-light border-0 mr-1">
@@ -293,8 +307,8 @@
                 </div>
                 <div class="col-sm-12">
                     <hr class="mt-1 mb-2" />
-                    <div class="d-flex no-block flex-column align-items-end">
-                        <div class="d-flex no-block form-group mb-1 align-items-center">
+                    <div class="d-flex no-block flex-column align-items-end">                        
+                        <div class="d-flex no-block form-group mb-1 align-items-center">                               
                             <label class="mb-0 me-2">Subtotal</label>
                             <span class="d-block form-control form-control-sm ml-2 text-right font-weight-bold text-nowrap"
                                     style="width: 170px;" v-text="formatNumber(servicio.subtotal)">
@@ -312,6 +326,22 @@
                                     style="width: 170px;" v-text="formatNumber(servicio.total)">
                             </span>
                         </div>
+                        <div class="form-group mb-1 col-auto align-self-end mb-2">                        
+                                <button type="submit" class="btn btn bg-yellow-lt ms-auto border shadow-sm ms-auto" @click.prevent="calculateTotals()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calculator icon-pulse" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+                                        <path d="M8 7m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z"></path>
+                                        <path d="M8 14l0 .01"></path>
+                                        <path d="M12 14l0 .01"></path>
+                                        <path d="M16 14l0 .01"></path>
+                                        <path d="M8 17l0 .01"></path>
+                                        <path d="M12 17l0 .01"></path>
+                                        <path d="M16 17l0 .01"></path>
+                                        </svg>
+                                    Recalcular
+                                </button>
+                            </div> 
                     </div>
                 </div>
 
@@ -344,6 +374,7 @@
             </template>
         </main-content-servicio>
         <modal-detail-servicio ref="modalDetailServicio"></modal-detail-servicio>
+        <modal-edit-detail-servicio ref="modalEditDetailServicio" @updateDataServices="searchReplaceRecord"></modal-edit-detail-servicio>
         <modal-crear-cliente ref="modalCrearCliente"></modal-crear-cliente>
     </div>
 </template>
@@ -362,6 +393,7 @@
     import Select2 from './../utils/Select2';
     import VDatePicker from 'vue2-datepicker';
     import ModalDetailServicio from '../modal/_ModalDetailServicio.vue';
+    import ModalEditDetailServicio from '../modal/_ModalEditDetailServicio.vue';
     import ModalCrearCliente from '../modal/_ModalCrearCliente.vue';
 
     export default {
@@ -502,7 +534,7 @@
                     subtotal: this.servicio.subtotal,
                     total: this.servicio.total,
                 }
-                console.log(servicioData);
+                //console.log(servicioData);
                 this.$emit('saveData', servicioData);
             },            
 
@@ -713,9 +745,9 @@
             },
 
             calcularFechaProximoYFinalGeneral() {
-                const hoy = moment();
+                const hoy = moment().startOf('day');
                 const fechasOrdenadas = this.serviciodetalles.map(fecha => {
-                    const fechaMoment = moment(fecha.fechafin, 'DD-MM-YYYY');
+                    const fechaMoment = moment(fecha.fechafin, 'DD-MM-YYYY').startOf('day');
                     const diff = hoy.diff(fechaMoment);
                     return { fecha: fecha.fechafin, diff };
                 }).sort((a, b) => Math.abs(a.diff) - Math.abs(b.diff));
@@ -734,7 +766,7 @@
                 const fechaActual = moment();
                 const fechaEnUnAnio = fechaActual.clone().add(1, 'year');
                 this.fecha_expiracion = fechaEnUnAnio.format('DD-MM-YYYY');
-                console.log('renovacion año: ',this.fecha_expiracion);
+                //console.log('renovacion año: ',this.fecha_expiracion);
                 this.calcularFechaAnticipado(this.fecha_expiracion);
             },
             //caulcular F. Fin Detalleservicio radiobottom
@@ -743,7 +775,7 @@
                 const fechaActual = moment();
                 const fechaEnUnMes = fechaActual.clone().add(1, 'month');
                 this.fecha_expiracion = fechaEnUnMes.format('DD-MM-YYYY');
-                console.log('un mes: ',this.fecha_expiracion);
+                //console.log('un mes: ',this.fecha_expiracion);
                 this.calcularFechaAnticipado(this.fecha_expiracion);               
             },
             //caulcular F. Anticiapdo Detalleservicio radiobottom
@@ -752,7 +784,7 @@
                 const fechaDosDiasAntes = fecha.clone().subtract(2, 'days');                
                 //console.log(fechaDosDiasAntes.format('DD-MM-YYYY'));
                 this.fecha_anticipado = fechaDosDiasAntes.format('DD-MM-YYYY');
-                console.log('Anticipado: ',this.fecha_anticipado);
+                //console.log('Anticipado: ',this.fecha_anticipado);
             },
 
             clearData(){
@@ -783,9 +815,15 @@
 
             showDetalle(detalle, rowIndex){
                 this.$nextTick(() => {
-                    console.log(detalle,rowIndex);
-                        this.$refs.modalDetailServicio.showDetail(detalle); 
+                    //console.log(detalle,rowIndex);
+                    this.$refs.modalDetailServicio.showDetail(detalle); 
                         
+                });
+            },
+            editDetalle(detalle, rowIndex){
+                this.$nextTick(() => {
+                    //console.log(detalle,rowIndex);
+                    this.$refs.modalEditDetailServicio.showDetail(detalle,rowIndex);        
                 });
             },
             removeDetalle(detalle, rowIndex){
@@ -799,12 +837,64 @@
                         }
                     });
             },
+
+            calcularFechaFinalMesRonovacion(date) {
+                const fechaActual = moment(date, 'DD-MM-YYYY');
+                const fechaEnUnMes = fechaActual.clone().add(1, 'month');
+                let fecha_expiracion = fechaEnUnMes.format('DD-MM-YYYY');
+                /* console.log('un mes: ', fecha_expiracion); */
+                return fecha_expiracion;               
+            },
+            calcularFechaAnticipadoRonovacion(dateexpiracion){
+                let fecha = moment(dateexpiracion, "DD-MM-YYYY");
+                const fechaDosDiasAntes = fecha.clone().subtract(2, 'days');                
+                //console.log(fechaDosDiasAntes.format('DD-MM-YYYY'));
+                let fecha_anticipado = fechaDosDiasAntes.format('DD-MM-YYYY');
+                /* console.log('Anticipado: ',fecha_anticipado); */
+                return fecha_anticipado;
+            },
+
             renoveDetalleServicio(detalle, rowIndex){
                 swalAlertRenovation(`¿Seguro que quiere renovar el servicio <b>${detalle.tiposervicio.nombre}</b>?,<br>
                                     Se contara la renovación desde la ultima fecha a renovar <b>${detalle.fechafin}</b>`,appName)
                 .then((result) => {
                     if (result.value) {
-                        console.log(result.value);
+
+                        //console.log(result.value, rowIndex);
+                        
+                        let dateEndRenovation = this.calcularFechaFinalMesRonovacion(this.servicio.serviciodetalles[rowIndex].fechafin);
+                        let dateAnticipado = this.calcularFechaAnticipadoRonovacion(dateEndRenovation);
+                        let dateStartRenovation = this.servicio.serviciodetalles[rowIndex].fechafin;
+                        
+                        this.servicio.serviciodetalles[rowIndex].changed = true;
+                        this.servicio.serviciodetalles[rowIndex].fechainicio = dateStartRenovation;
+                        this.servicio.serviciodetalles[rowIndex].fechaanticipo = dateAnticipado;
+                        this.servicio.serviciodetalles[rowIndex].fechafin = dateEndRenovation;
+                        this.servicio.serviciodetalles[rowIndex].codestadoservicio = 4;
+                        this.servicio.serviciodetalles[rowIndex].estadoservicio.backgroundColor = 'rgb(35, 209, 143)';
+                        this.servicio.serviciodetalles[rowIndex].estadoservicio.nombreestadoservicio = 'Vigente';
+                        //console.log(this.servicio.serviciodetalles);
+
+                        this.calcularFechaProximoYFinalGeneral();
+                        this.servicio.fecha_anticipadogeneral = moment(this.servicio.fecha_finsercanogeneral,"DD-MM-YYYY").clone().subtract(2, 'days').format('DD-MM-YYYY');
+
+
+                        if (this.servicio.serviciodetalles.some(detalle => detalle.codestadoservicio === 6)) {
+                            //console.log('tiene vencidos');
+                            this.servicio.codestadoservicio = 3;
+                            return;
+                        }
+                        if (this.servicio.serviciodetalles.some(detalle => detalle.codestadoservicio === 5)) {
+                            //console.log('tiene pronto venceer');
+                            this.servicio.codestadoservicio = 2;
+                            return;
+                        }
+                        if (this.servicio.serviciodetalles.some(detalle => detalle.codestadoservicio === 4)) {
+                            //console.log('tiene vigentes');
+                            this.servicio.codestadoservicio = 1;
+                            return;
+                        }
+                        
                         /* this.serviciodetalles.splice(rowIndex, 1);
                         this.calcularFechaProximoYFinalGeneral();
                         this.calculateTotals(); */
@@ -818,6 +908,20 @@
                         this.$refs.modalCrearCliente.showDetail();                         
                 });
             },
+
+            searchReplaceRecord(dataModified,rowIndex){
+                //console.log(dataModified,this.servicio);
+                this.servicio.serviciodetalles[rowIndex].changed = true;
+                this.servicio.serviciodetalles[rowIndex] = dataModified;
+
+                this.calcularFechaProximoYFinalGeneral();
+                this.servicio.fecha_anticipadogeneral = moment(this.servicio.fecha_finsercanogeneral,"DD-MM-YYYY").clone().subtract(2, 'days').format('DD-MM-YYYY');
+                
+                this.calculateTotals();                
+
+                //falta q calcule el total del precio o subtital, que calcule la fecha general de entre todas, tambienq ue calucle nuevamente entre todo lo servicios
+                
+            }
         
         },
 
@@ -837,6 +941,7 @@
             VDatePicker,
             VueNumeric,
             ModalDetailServicio,
+            ModalEditDetailServicio,
             ModalCrearCliente,
         }
     }

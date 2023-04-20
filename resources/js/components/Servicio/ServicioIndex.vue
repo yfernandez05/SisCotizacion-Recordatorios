@@ -191,7 +191,7 @@
 
                 if(!param.isactive) optionMessage = 'Restaurar';
 
-                swalAlertConfirm(`¿Seguro que quiere ${optionMessage} el Tipo de Servicio <b>${param.nombre}</b>?`, appName)
+                swalAlertConfirm(`¿Seguro que quiere ${optionMessage} el Servicio <b>${param.serie}-${param.numero}</b>?`, appName)
                     .then(function(optionSelected){
                         if(optionSelected.value){
                             

@@ -164,7 +164,7 @@ export default {
                         console.log(error);
                     })
 
-            },
+        },
             validateFields() {
                 this.errors = [];
 

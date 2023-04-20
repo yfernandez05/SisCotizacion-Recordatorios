@@ -154,7 +154,7 @@
                         <p>Te saluda Padin Publicidad Digital, te recordamos que tiene servicios con nosotros se encuentra <strong>EXPIRADO</strong></p>
                         <p>Contactenos para renovar el servicio</p>
                         <h2 class="fw-800">Fecha expiracion: {{ date('d/m/Y', strtotime($servicio->fecha_finsercanogeneral)) }}</h2>
-                        <p>Aqui te mostramos el detalle de los servicio pronto a expirar:</p>                         
+                        <p>Aqui te mostramos el detalle de los servicios vencidos:</p>                         
                     </div>
                 </div>
 
@@ -184,7 +184,7 @@
                                     @if($detalle->notadetalle)<p class="f-left"> <b>Nota adicional: </b>{{$detalle->notadetalle}}</p><br>@endif
                                     <p class="f-left"> <b>Fecha de contrato: </b>{{$detalle->fechainicio}}</p><br>
                                     <p class="f-left"> <b>Fecha de expiracion: </b>{{$detalle->fechafin}}</p><br>
-                                    <!-- <p class="f-left"> <b>Estado del servicio: </b><span style="background-color:'{{$detalle->estadoservicio->backgroundColor}}'; color:'{{$detalle->estadoservicio->textColor}}'">{{$detalle->estadoservicio->nombreestadoservicio}}</span></p><br> -->
+                                    <p class="f-left"> <b>Estado del servicio: </b><span style="background-color:#ff5757; color:#fff;border-radius: 3em;padding: 2px 15px;">Vencido</span></p><br>
                                 </td> 
                                 <td>S/.{{$detalle->precio}}</td> 
                                 <td>@if($detalle->descuento) S/.{{$detalle->descuento}} @endif</td> 

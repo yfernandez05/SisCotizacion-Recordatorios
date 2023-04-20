@@ -1,7 +1,7 @@
 <template>
     <modal :showModal="showModal" @closeModal="closeModal" modalSize="modal-lg">
         <template v-slot:modal-header-title>
-            Detalles del regsitro #
+            Detalles del regsitro
         </template>
         <template v-slot:modal-body-main>
             <div class="row">

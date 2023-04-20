@@ -27,6 +27,7 @@ class DetalleServicio extends Model
         'notadetalle',
         'cantidad',
         'precio',
+        'descuento',
         'importe',
         'fecha_anticipado',
         'fecha_contratacion',

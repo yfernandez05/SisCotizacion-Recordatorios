@@ -53,7 +53,7 @@ class SendServiceNotificationsCommand extends Command
 
         //obtenemos las fechas que sean igual o ya pasaron de la fecha anticipo hasta que encuentre la fecha fin aqui no validamos la fecha anticipo, solo obtenemos los que son menores o estan igual a la fecha final
         //luego esos id lo validamos en la otra consulta para asi obtener solo los que estan por expirar.
-        $serviciosfinal = Servicio::whereDate('fecha_finsercanogeneral', '<=', $fechaActual)->where('estado','A')->get();
+        $serviciosfinal = Servicio::whereDate('fecha_finsercanogeneral', '<=', $fechaActual) ->with('serviciodetalles')->where('estado','A')->get();
         //$servicioanticipado = Servicio::whereDate('fecha_anticipadogeneral', '<=', $fechaActual)->get(); 
 
         //ingresamos los codservicios en una array si no jhay fechas igual af inales o menor no harba nada en el array
@@ -61,62 +61,57 @@ class SendServiceNotificationsCommand extends Command
         //dd($codigosServicioFinal);
 
         //filtramos servicios que no tengan codigos que se repian en fecha final sercano - solo servicios con fecha anticipado sin estar en fecha finsercano.
-        /* $arrayservicioanticipado = Servicio::whereDate('fecha_anticipadogeneral', '<=', $fechaActual)
-        ->whereNotIn('codservicio', $codigosServicioFinal)
-        ->get(); */
-        $arrayservicioanticipado = Servicio::whereDate('fecha_anticipadogeneral', '<=', $fechaActual)
-        ->where('estado', 'A')
-        ->whereNotIn('codservicio', $codigosServicioFinal)
-        ->with(['serviciodetalles' => function ($query) use ($fechaActual) {        
+        $conitionalAnticipado = function ($query) use ($fechaActual) {
             $query->where('estado', '=', 'A')
-            ->whereDate('fecha_anticipado', '<=', $fechaActual);
-        }])
+                ->whereDate('fecha_anticipado', '<=', $fechaActual)
+                ->whereDate('fecha_expiracion', '>', $fechaActual);
+        };
+
+        $arrayservicioanticipado = Servicio::where('estado', 'A')
+        ->whereDate('fecha_anticipadogeneral', '<=', $fechaActual)
+        //->whereNotIn('codservicio', $codigosServicioFinal)
+        ->whereHas('serviciodetalles', $conitionalAnticipado)
+        ->with(['serviciodetalles' => $conitionalAnticipado])
         ->get();
 
-
-        //servicios donde fecha_finsercanogeneral es mayor o igual a la fecha de hoy, pero no mayor que la fecha de hoy.
-        //asi obtenemos solo los expirados y venciados
-        /* $serviciosExpiradosVencidoss = Servicio::whereDate('fecha_finsercanogeneral', '>=', $fechaActual)
-        ->whereDate('fecha_finsercanogeneral', '<=', $fechaActual)
-        ->with(['serviciodetalles' => function ($query) use ($fechaActual) {
-            $query->where('estado', '=', 'A')
-            ->whereDate('fecha_expiracion', '<=', $fechaActual);
-        }])                                        
-        ->get(); */
+        //return dd($arrayservicioanticipado);
 
         //obtenemos los registros que sean meno o igual ala fecha limite  de hoy que es lafecha actual mas agregado N dias adicionales 
         //pero menor o igual a la fecha actual, luego filtramos los expirados en el detalle;
         $serviciosExpiradosVencidos = Servicio::whereDate('fecha_finsercanogeneral', '>=', $fechaLimite)
         ->whereDate('fecha_finsercanogeneral', '<=', $fechaActual)
         ->where('estado', 'A')
+        ->has('serviciodetalles')
         ->with(['serviciodetalles' => function ($query) use ($fechaActual) {
             $query->where('estado', '=', 'A')
             ->whereDate('fecha_expiracion', '<=', $fechaActual);
         }]) 
         ->get();        
 
-        //validar las consutlas por el estado del servicio, y elimianrlos.
-        //al dar clic en un boton que diga renovar enviar el detalle del servicio en especifico renovado y la fecha que se esta estableciendo.
-        //o en todo caso al mometno de guardar y ver qu hay una campo llamdo isRenoved entocnes enviar una notificacion al cliente con todo el detalle de lso servicios incluyendo sus estados.
-        
-        if ($arrayservicioanticipado->count() > 0) {
-            foreach($arrayservicioanticipado as $data){
-                //dump($data->serviciodetalles);
+
+        if ($arrayservicioanticipado->first()->serviciodetalles->isNotEmpty()) {
+            /*  foreach($arrayservicioanticipado as $data){
                 dump('anticpiado: ',$data->codservicio);
-            }
+            }  */
 
-            //cambio de estado de servicio a pronto a expirar
-            //event(new ServiceNotificationSoonToExpire($arrayservicioanticipado)); //usamos el evento ServiceNotificationSoonToExpire despue de enviar las notificaciones por correo para que cambie los estados  
+            foreach ($arrayservicioanticipado as $service) {                    
+                event(new ServiceNotificationSoonToExpire($service));
+            }
+            dump('Termino de ejecutarse Pronto Exiprar');
         }
 
 
-        /* return dd($serviciosExpiradosVencidoss); */
-        if($serviciosExpiradosVencidos->count() > 0){  
-            foreach ($serviciosExpiradosVencidos as $service) {
+        if ($serviciosExpiradosVencidos->first()->serviciodetalles->isNotEmpty()) {
+            /* foreach ($serviciosExpiradosVencidos as $service) {
                 dump('expirado: ',$service->codservicio);
-            }
-           //cambio de estado de servicio a servicios expirados
-           //event(new ServiceNotificationExpired($serviciosExpiradosVencidos)); //usamos el evento ServiceNotificationExpired despue de enviar las notificaciones por correo para que cambie los estados
+            } */
+
+            foreach ($serviciosExpiradosVencidos as $service) {                    
+                event(new ServiceNotificationExpired($service));//usamos el evento ServiceNotificationExpired despue de enviar las notificaciones por correo para que cambie los estados
+            } 
+            dump('Termino de ejecutarse Expirados');
         }
+
+
     }
 }

@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 class ServiceSoonToExpire extends Mailable
 {
     use Queueable, SerializesModels;
-    public $subject = 'Tiene servicios que estan proximos a vencer!!';
+    public $subject = 'Tienes servicios que estan proximos a vencer!!';
     public $servicio;
     public $tiposervicio;
 

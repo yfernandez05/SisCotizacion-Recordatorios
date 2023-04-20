@@ -42,15 +42,18 @@ class ServiceStatusSoonToExpire
 
         try {       
             DB::transaction(function () use ($servicio) {
-                foreach ($servicio as $service) {  
-                    /* $service->update(['codestadoservicio' => RuleManager::STATUS_SERVICES['PRONTO_VENCER']]);
-                    $service->serviciodetalles->update(['codestadodetalle' => RuleManager::STATUS_DETAILS_SERVICES['PRONTO_VENCER']]);
-                    Mail::to($service->cliente->email)->send(new ServiceSoonToExpire($service)); */
+                /* foreach ($servicio as $service) {  
+                    
                     //Servicio::whereIn('codservicio', $service->pluck('codservicio'))->update(['codestadoservicio' => RuleManager::STATUS_SERVICES['PRONTO_VENCER']]);
                     $service->update(['codestadoservicio' => RuleManager::STATUS_SERVICES['PRONTO_VENCER']]);
                     DetalleServicio::whereIn('id', $service->serviciodetalles->pluck('id'))->update(['codestadoservicio' => RuleManager::STATUS_DETAILS_SERVICES['PRONTO_VENCER']]);
-                    Mail::to($service->cliente->email)->send(new ServiceSoonToExpire($service));
-                } 
+                    //Mail::to($service->cliente->email)->send(new ServiceSoonToExpire($service));
+                    dump('por vencer --');
+                } */ 
+                $servicio->update(['codestadoservicio' => RuleManager::STATUS_SERVICES['PRONTO_VENCER']]);
+                DetalleServicio::whereIn('id', $servicio->serviciodetalles->pluck('id'))->update(['codestadoservicio' => RuleManager::STATUS_DETAILS_SERVICES['PRONTO_VENCER']]);
+                Mail::to($servicio->cliente->email)->send(new ServiceSoonToExpire($servicio));
+                    
             });          
         } catch (QueryException $e) {
             dump($e->getMessage());

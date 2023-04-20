@@ -183,7 +183,7 @@
                                     @if($detalle->notadetalle)<p class="f-left"> <b>Nota adicional: </b>{{$detalle->notadetalle}}</p><br>@endif
                                     <p class="f-left"> <b>Fecha de contrato: </b>{{$detalle->fechainicio}}</p><br>
                                     <p class="f-left"> <b>Fecha de expiracion: </b>{{$detalle->fechafin}}</p><br>
-                                    <!-- <p class="f-left"> <b>Estado del servicio: </b><span style="background-color:{{$detalle->estadoservicio->backgroundColor}}; color:{{$detalle->estadoservicio->textColor}}; padding:5px 12px; border-radius: 5em;">{{$detalle->estadoservicio->nombreestadoservicio}}</span></p><br> -->
+                                    <p class="f-left"> <b>Estado del servicio: </b><span style="background-color:#ffd500; color:#000;border-radius: 3em;padding: 2px 15px;">Pronto a vencer</span></p><br>
                                 </td> 
                                 <td>S/.{{$detalle->precio}}</td> 
                                 <td>@if($detalle->descuento) S/.{{$detalle->descuento}} @endif</td> 

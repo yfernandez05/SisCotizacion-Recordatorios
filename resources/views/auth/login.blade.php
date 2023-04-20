@@ -50,7 +50,7 @@
               <div class="input-group input-group-flat">
               <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Su contraseña">
                 <span class="input-group-text">
-                  <a href="#" class="link-secondary" title="Mostrar Constraseña" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+                  <a href="#" class="link-secondary" title="Mostrar Constraseña" data-bs-toggle="tooltip" onclick="showPassword()">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
                   </a>
                 </span>
@@ -86,4 +86,11 @@
         <div class="bg-cover h-100 min-vh-100 login-cover"></div>
       </div>
     </div>
+    <script>
+  function showPassword() {
+    var passwordField = document.getElementById("password");
+    passwordField.type = (passwordField.type === "password") ? "text" : "password";
+  }
+</script>
 @endsection
+

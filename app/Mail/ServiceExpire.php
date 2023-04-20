@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 class ServiceExpire extends Mailable
 {
     use Queueable, SerializesModels;
-    public $subject = 'Tiene servicios que ya Vencieron!!';
+    public $subject = 'Tienes servicios que ya Vencieron!!';
     public $servicio;
     public $tiposervicio;
     /**
