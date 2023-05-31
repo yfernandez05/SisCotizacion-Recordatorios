@@ -101,7 +101,7 @@
                     <div class="form-group col-12 col-sm-6 col-md-4 col-lg-3 mb-2" >
                         <label class="mb-0">URL Factura</label>
                         <div class="input-group input-group-flat">
-                            <input type="text" class="form-control" v-model="serviciodetalles.url_factura"  autocomplete="off">
+                            <input type="text" class="form-control" v-model="servicio.url_documento"  autocomplete="off">
                             <span class="input-group-text">
                                 <kbd>Dirección PDF</kbd>
                             </span>
@@ -413,6 +413,7 @@
                     return {
                         nombre: '',
                         codestadoservicio: '1',
+                        url_documento: '',
                         /* fecha_servicio: this.formatDate(new Date(), 'DD-MM-YYYY'), */
                         fecha_servicio: '',
                         fecha_anticipadogeneral: null,
@@ -523,6 +524,7 @@
 
                 let servicioData = {                    
                     codcliente: this.clienteSeleccionadoLocal.codcliente,
+                    url_documento: this.servicio.url_documento,
                     codcomprobante: this.tipocomprobante.codcomprobante,
                     codestadoservicio: this.servicio.codestadoservicio,
                     serviciodetalles: this.serviciodetalles,

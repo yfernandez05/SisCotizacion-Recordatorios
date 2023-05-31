@@ -73,6 +73,7 @@ body{
     width: 78px;
     height: 78px;
     color: #fff;
+    margin: auto;
   }
     .loader:before,
     .loader:after {
@@ -88,7 +89,7 @@ body{
       animation: 1s spin linear infinite;
     }
     .loader:after {
-      color: $themecolor-secondary;
+      color: #04a2e0;
       transform: rotateY(70deg);
       animation-delay: .4s;
     }

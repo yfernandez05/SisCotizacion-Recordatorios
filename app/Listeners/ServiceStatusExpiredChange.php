@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\ServiceNotificationExpired;
 use App\Mail\ServiceExpire;
 use App\Models\DetalleServicio;
+use App\Models\Servicio;
 use App\Util\LogErrorManager;
 use App\Util\RuleManager;
 use Exception;
@@ -37,17 +38,9 @@ class ServiceStatusExpiredChange
         $servicio = $event->servicio;
         try {       
             DB::transaction(function () use ($servicio) {
-                /* foreach ($servicio as $service) {
-                    
-                    $service->update(['codestadoservicio' => RuleManager::STATUS_SERVICES['VENCIDO']]);
-                    DetalleServicio::whereIn('id', $service->serviciodetalles->pluck('id'))->update(['codestadoservicio' => RuleManager::STATUS_DETAILS_SERVICES['VENCIDO']]);
-                    //Mail::to($service->cliente->email)->send(new ServiceExpire($service));
-                    dump('vencido --');
-                }  */
-                $servicio->update(['codestadoservicio' => RuleManager::STATUS_SERVICES['VENCIDO']]);
+                Servicio::where('codservicio', $servicio->codservicio)->update(['codestadoservicio' => RuleManager::STATUS_SERVICES['VENCIDO']]);
                 DetalleServicio::whereIn('id', $servicio->serviciodetalles->pluck('id'))->update(['codestadoservicio' => RuleManager::STATUS_DETAILS_SERVICES['VENCIDO']]);
                 Mail::to($servicio->cliente->email)->send(new ServiceExpire($servicio));
-                    
             });          
         } catch (QueryException $e) {
             dump($e->getMessage());

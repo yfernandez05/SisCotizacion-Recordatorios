@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Cliente;
 use App\Models\EstadoServicio;
-use App\Models\tipocomprobante;
+use App\Models\TipoComprobante;
 use App\Models\DetalleServicio;
 
 class Servicio extends Model

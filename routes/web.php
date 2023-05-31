@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'Auth\LoginController@showLoginForm');
+Route::get('buscarservicio', 'BuscarServicioController@index')->name('buscarservicio.index');
 Auth::routes(['register' => false]);
 Route::permanentRedirect('/register', '/login');
 
@@ -56,6 +57,8 @@ Route::prefix('rest')->middleware('auth')->name('rest.')->group(function () {
 
     Route::get('cliente/select', 'ClienteController@select')->name('cliente.select');
     Route::resource('cliente', 'ClienteController');
+
+    Route::get('buscarservicio/search', 'BuscarServicioController@search')->name('buscarservicio.search');
 
 
 /*
@@ -124,4 +127,4 @@ Route::prefix('rest')->middleware('auth')->name('rest.')->group(function () {
     
     
 });
-Route::view('/notification','emails.messageServiceSoonToExpire')->name('notification');;
+Route::view('/notification','emails.messageServiceSoonToExpire')->name('notification');

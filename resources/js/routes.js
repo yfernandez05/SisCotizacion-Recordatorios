@@ -1,31 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Imports from './importsComponents';
 Vue.use(VueRouter)
-
-/*Importamos los componentes .vue*/
-import Empresa from './components/empresa/EmpresaIndex.vue';
-import User from './components/user/UserIndex.vue';
-import UserCreate from './components/user/UserCreate.vue';
-import UserEdit from './components/user/UserEdit.vue';
-import Rol from './components/rol/RolIndex.vue';
-import RolCreate from './components/rol/RolCreate.vue';
-import RolEdit from './components/rol/RolEdit.vue';
-import LogError from './components/logerror/LogErrorIndex.vue';
-import EstadoServicio from './components/estadoservicio/EstadoServicioIndex.vue';
-import EstadoServicioCreate from './components/estadoservicio/EstadoServicioCreate.vue';
-import EstadoServicioEdit from './components/estadoservicio/EstadoServicioEdit.vue';
-import TipoServicio from './components/tiposervicio/TipoServicioIndex.vue';
-import TipoServicioCreate from './components/tiposervicio/TipoServicioCreate.vue';
-import TipoServicioEdit from './components/tiposervicio/TipoServicioEdit.vue';
-import TipoDocumento from './components/tipodocumento/TipoDocumentoIndex.vue';
-import TipoDocumentoCreate from './components/tipodocumento/TipoDocumentoCreate.vue';
-import TipoDocumentoEdit from './components/tipodocumento/TipoDocumentoEdit.vue';
-import Cliente from './components/cliente/ClienteIndex.vue';
-import ClienteCreate from './components/cliente/ClienteCreate.vue';
-import ClienteEdit from './components/cliente/ClienteEdit.vue';
-import Servicio from './components/servicio/ServicioIndex.vue';
-import ServicioCreate from './components/servicio/ServicioCreate.vue';
-import ServicioEdit from './components/servicio/ServicioEdit.vue';
 
 window.appRootUrl = window.location.origin;
 window.appApiUrl = `${window.appRootUrl}/rest`;
@@ -38,123 +14,128 @@ export default new VueRouter({
          { 
             path: intranetBaseUrl,
             name: 'spa',
-            component: Empresa,
+            component: Imports.Empresa,
         },
         {
             path: `${intranetBaseUrl}/user`,
             name: 'spa.user',
-            component: User,
+            component: Imports.User,
         },
         {
             path: `${intranetBaseUrl}/user/registrar`,
             name: 'spa.user.registrar',
-            component: UserCreate,
+            component: Imports.UserCreate,
         },
         {
             path: `${intranetBaseUrl}/user/editar/:id`,
             name: 'spa.user.editar',
-            component: UserEdit,
+            component: Imports.UserEdit,
         },
         {
             path: `${intranetBaseUrl}/rol`,
             name: 'spa.rol',
-            component: Rol,
+            component: Imports.Rol,
         },
         {
             path: `${intranetBaseUrl}/rol/registrar`,
             name: 'spa.rol.registrar',
-            component: RolCreate,
+            component: Imports.RolCreate,
         },
         {
             path: `${intranetBaseUrl}/rol/editar/:id`,
             name: 'spa.rol.editar',
-            component: RolEdit,
+            component: Imports.RolEdit,
         },
         {
             path: `${intranetBaseUrl}/logerror`,
             name: 'spa.logerror',
-            component: LogError
+            component: Imports.LogError
         },
         {
             path: `${intranetBaseUrl}/tasainteres`,
             name: 'spa.tasainteres',
-            component: User,
+            component: Imports.User,
         },
         {
             path: `${intranetBaseUrl}/estadoservicio`,
             name: 'spa.estadoservicio',
-            component: EstadoServicio,
+            component: Imports.EstadoServicio,
         },
         {
             path: `${intranetBaseUrl}/estadoservicio/registrar`,
             name: 'spa.estadoservicio.registrar',
-            component: EstadoServicioCreate,
+            component: Imports.EstadoServicioCreate,
         },
         {
             path: `${intranetBaseUrl}/estadoservicio/editar/:id`,
             name: 'spa.estadoservicio.editar',
-            component: EstadoServicioEdit,
+            component: Imports.EstadoServicioEdit,
         },
         {
             path: `${intranetBaseUrl}/tiposervicio`,
             name: 'spa.tiposervicio',
-            component: TipoServicio,
+            component: Imports.TipoServicio,
         },
         {
             path: `${intranetBaseUrl}/tiposervicio/registrar`,
             name: 'spa.tiposervicio.registrar',
-            component: TipoServicioCreate,
+            component: Imports.TipoServicioCreate,
         },
         {
             path: `${intranetBaseUrl}/tiposervicio/editar/:id`,
             name: 'spa.tiposervicio.editar',
-            component: TipoServicioEdit,
+            component: Imports.TipoServicioEdit,
         },
         {
             path: `${intranetBaseUrl}/tipodocumento`,
             name: 'spa.tipodocumento',
-            component: TipoDocumento,
+            component: Imports.TipoDocumento,
         },
         {
             path: `${intranetBaseUrl}/tipodocumento/registrar`,
             name: 'spa.tipodocumento.registrar',
-            component: TipoDocumentoCreate,
+            component: Imports.TipoDocumentoCreate,
         },
         {
             path: `${intranetBaseUrl}/tipodocumento/editar/:id`,
             name: 'spa.tipodocumento.editar',
-            component: TipoDocumentoEdit,
+            component: Imports.TipoDocumentoEdit,
         },
         {
             path: `${intranetBaseUrl}/cliente`,
             name: 'spa.cliente',
-            component: Cliente,
+            component: Imports.Cliente,
         },
         {
             path: `${intranetBaseUrl}/cliente/registrar`,
             name: 'spa.cliente.registrar',
-            component: ClienteCreate,
+            component: Imports.ClienteCreate,
         },
         {
             path: `${intranetBaseUrl}/cliente/editar/:id`,
             name: 'spa.cliente.editar',
-            component: ClienteEdit,
+            component: Imports.ClienteEdit,
         },
         {
             path: `${intranetBaseUrl}/servicio`,
             name: 'spa.servicio',
-            component: Servicio,
+            component: Imports.Servicio,
         },
         {
             path: `${intranetBaseUrl}/servicio/registrar`,
             name: 'spa.servicio.registrar',
-            component: ServicioCreate,
+            component: Imports.ServicioCreate,
         },
         {
             path: `${intranetBaseUrl}/servicio/editar/:id`,
             name: 'spa.servicio.editar',
-            component: ServicioEdit,
+            component: Imports.ServicioEdit,
         },
+        {
+            path: `/buscarservicio`,
+            name: 'spa.buscarservicio',
+            component: Imports.BuscarServicio,
+         },
        /*  { 
             path: `${intranetBaseUrl}/dashboard`,
             name: 'spa.dashboard',

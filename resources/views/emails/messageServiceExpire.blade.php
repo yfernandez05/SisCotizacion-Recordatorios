@@ -225,7 +225,7 @@
                         </table>
                     </div>
 
-
+                    <p>Si desea saber más información sobre los servicios que tiene con nosotros puedes realizarlo mediente este enlace: <a class="text-primary" href="{{route('buscarservicio.index')}}">Consulta Servicios</a></p>
                     </div>
                 </div>
 

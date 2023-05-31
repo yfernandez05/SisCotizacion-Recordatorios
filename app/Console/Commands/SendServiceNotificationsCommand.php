@@ -8,8 +8,12 @@ use App\Events\ServiceNotificationPending;
 use App\Events\ServiceNotificationSoonToExpire;
 use App\Models\DetalleServicio;
 use App\Models\Servicio;
+use App\Util\LogErrorManager;
+use App\Util\RuleManager;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -88,28 +92,48 @@ class SendServiceNotificationsCommand extends Command
         }]) 
         ->get();        
 
-
-        if ($arrayservicioanticipado->first()->serviciodetalles->isNotEmpty()) {
-            /*  foreach($arrayservicioanticipado as $data){
-                dump('anticpiado: ',$data->codservicio);
-            }  */
-
-            foreach ($arrayservicioanticipado as $service) {                    
-                event(new ServiceNotificationSoonToExpire($service));
+        //data pronto a expirar
+        try { 
+            if ($arrayservicioanticipado->isNotEmpty()) {
+                if ($arrayservicioanticipado->first()->serviciodetalles->isNotEmpty()) {
+                    /*  foreach($arrayservicioanticipado as $data){
+                        dump('anticpiado: ',$data->codservicio);
+                    }  */    
+                    foreach ($arrayservicioanticipado as $service) {                    
+                        event(new ServiceNotificationSoonToExpire($service));                    
+                    }
+                    dump('Termino de ejecutarse Pronto Exiprar');
+                    
+                }
+                
             }
-            dump('Termino de ejecutarse Pronto Exiprar');
+        }  catch (QueryException $e) {
+            dump($e->getMessage());
+            LogErrorManager::saveInDB($this, __FUNCTION__, $e);
+        } catch (Exception $e) {
+            dump($e->getMessage());
+            LogErrorManager::saveInDB($this, __FUNCTION__, $e);
         }
 
-
-        if ($serviciosExpiradosVencidos->first()->serviciodetalles->isNotEmpty()) {
-            /* foreach ($serviciosExpiradosVencidos as $service) {
-                dump('expirado: ',$service->codservicio);
-            } */
-
-            foreach ($serviciosExpiradosVencidos as $service) {                    
-                event(new ServiceNotificationExpired($service));//usamos el evento ServiceNotificationExpired despue de enviar las notificaciones por correo para que cambie los estados
-            } 
-            dump('Termino de ejecutarse Expirados');
+        //data vencidos
+        try {
+            if ($serviciosExpiradosVencidos->isNotEmpty()) {
+                if ($serviciosExpiradosVencidos->first()->serviciodetalles->isNotEmpty()) {
+                    /* foreach ($serviciosExpiradosVencidos as $service) {
+                        dump('expirado: ',$service->codservicio);
+                    } */
+                    foreach ($serviciosExpiradosVencidos as $service) {                    
+                        event(new ServiceNotificationExpired($service));//usamos el evento ServiceNotificationExpired despue de enviar las notificaciones por correo para que cambie los estados
+                    } 
+                    dump('Termino de ejecutarse Expirados');
+                }            
+            }
+        }  catch (QueryException $e) {
+            //dump($e->getMessage());
+            LogErrorManager::saveInDB($this, __FUNCTION__, $e);
+        } catch (Exception $e) {
+            //dump($e->getMessage());
+            LogErrorManager::saveInDB($this, __FUNCTION__, $e);
         }
 
 
