@@ -40,7 +40,7 @@
                     Imprimir información
                     </button> -->
                 </div>
-                <div class="container px-0">
+                <div class="container px-0 shadow-sm">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Informacion del cliente</h3>
@@ -89,7 +89,7 @@
                                             </div>
                                             <div class="datagrid-item">
                                                 <div class="datagrid-title">Adjunto Factural</div>
-                                                <div class="datagrid-content"><span v-text="serv.url_documento"></span></div>
+                                                <div class="datagrid-content"><span><a :href="serv.url_documento" target="_blank" v-text="serv.url_documento"></a></span></div>
                                             </div>
                                             <div class="datagrid-item">
                                                 <div class="datagrid-title">Serie</div>
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="row border-bottom mb-4">
                                     <div class="card-title">Detalles de la adquisición:</div>
-                                    <div class="col-6 mb-4 py-2"  v-for="detailservices in serv.serviciodetalles" :key="detailservices.id">                                       
+                                    <div class="col-12 col-lg-6 mb-4 py-2"  v-for="detailservices in serv.serviciodetalles" :key="detailservices.id">                                       
                                         <div class="mb-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler me-2 text-muted icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

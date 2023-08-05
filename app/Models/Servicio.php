@@ -22,6 +22,7 @@ class Servicio extends Model
         'codempleado',
         'codcomprobante',
         'codestadoservicio',
+        'url_documento',
         'serie',
         'numero',
         'fecha_servicio',

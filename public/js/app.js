@@ -7210,7 +7210,7 @@ var render = function render() {
   }, [_vm._v("Buscar")])])])]), _vm._v(" "), _vm.servicios.length > 0 ? _c("div", [_c("div", {
     staticClass: "col-auto ms-auto d-print-none mt-3 mb-2 text-end"
   }), _vm._v(" "), _c("div", {
-    staticClass: "container px-0"
+    staticClass: "container px-0 shadow-sm"
   }, [_c("div", {
     staticClass: "card"
   }, [_vm._m(1), _vm._v(" "), _c("div", {
@@ -7307,11 +7307,15 @@ var render = function render() {
       staticClass: "datagrid-title"
     }, [_vm._v("Adjunto Factural")]), _vm._v(" "), _c("div", {
       staticClass: "datagrid-content"
-    }, [_c("span", {
+    }, [_c("span", [_c("a", {
+      attrs: {
+        href: serv.url_documento,
+        target: "_blank"
+      },
       domProps: {
         textContent: _vm._s(serv.url_documento)
       }
-    })])]), _vm._v(" "), _c("div", {
+    })])])]), _vm._v(" "), _c("div", {
       staticClass: "datagrid-item"
     }, [_c("div", {
       staticClass: "datagrid-title"
@@ -7383,7 +7387,7 @@ var render = function render() {
     }, [_vm._v("Detalles de la adquisición:")]), _vm._v(" "), _vm._l(serv.serviciodetalles, function (detailservices) {
       return _c("div", {
         key: detailservices.id,
-        staticClass: "col-6 mb-4 py-2"
+        staticClass: "col-12 col-lg-6 mb-4 py-2"
       }, [_c("div", {
         staticClass: "mb-2"
       }, [_c("svg", {
@@ -10702,6 +10706,20 @@ var render = function render() {
             textContent: _vm._s(_vm.servicio.tipocomprobante.nombrecomprobante)
           }
         })]), _vm._v(" "), _c("div", {
+          staticClass: "form-group form-group-sm col-12 col-sm-6 col-md-4 mb-3"
+        }, [_c("label", {
+          staticClass: "form-label"
+        }, [_vm._v("PDF Adjunto")]), _vm._v(" "), _c("span", {
+          staticClass: "form-control text-truncate text-muted"
+        }, [_c("a", {
+          attrs: {
+            href: _vm.servicio.url_documento,
+            target: "_blank"
+          },
+          domProps: {
+            textContent: _vm._s(_vm.servicio.url_documento)
+          }
+        })])]), _vm._v(" "), _c("div", {
           staticClass: "form-group form-group-sm col-12 col-sm-6 col-md-2 mb-3"
         }, [_c("label", {
           staticClass: "form-label"
@@ -10720,7 +10738,7 @@ var render = function render() {
             textContent: _vm._s(_vm.servicio.numero)
           }
         })]), _vm._v(" "), _c("div", {
-          staticClass: "form-group form-group-sm col-12 col-sm-6 col-md-4 mb-3"
+          staticClass: "form-group form-group-sm col-12 col-sm-6 col-md-4 col-lg-2 mb-3"
         }, [_c("label", {
           staticClass: "form-label"
         }, [_vm._v("F. Reg. Servicio")]), _vm._v(" "), _c("span", {
@@ -10729,7 +10747,7 @@ var render = function render() {
             textContent: _vm._s(_vm.servicio.fecha)
           }
         })]), _vm._v(" "), _c("div", {
-          staticClass: "form-group form-group-sm col-12 col-sm-6 col-md-4 mb-3"
+          staticClass: "form-group form-group-sm col-12 col-sm-6 col-md-4 col-lg-2 mb-3"
         }, [_c("label", {
           staticClass: "form-label"
         }, [_vm._v("F. Fin Servicio")]), _vm._v(" "), _c("span", {

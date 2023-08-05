@@ -196,6 +196,7 @@ class ServicioController extends BaseController
     public function setModel(Servicio $servicio,Request $request): Servicio
     {
         $servicio->codcliente = $request->codcliente;
+        $servicio->url_documento = $request->url_documento;
         $servicio->codempleado = $this->user->id;
         $servicio->codcomprobante = $request->codcomprobante;
         $servicio->codestadoservicio = $request->codestadoservicio;

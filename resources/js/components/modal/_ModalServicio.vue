@@ -30,6 +30,12 @@
                     <span class="form-control text-truncate text-muted"
                         v-text="servicio.tipocomprobante.nombrecomprobante"></span>
                 </div>
+                <div class="form-group form-group-sm col-12 col-sm-6 col-md-4 mb-3">
+                    <label class="form-label">PDF Adjunto</label>
+                    <span class="form-control text-truncate text-muted">
+                        <a :href="servicio.url_documento" target="_blank" v-text="servicio.url_documento"></a>
+                    </span>
+                </div>
                 <div class="form-group form-group-sm col-12 col-sm-6 col-md-2 mb-3">
                     <label class="form-label">Serie</label>
                     <span class="form-control text-truncate text-muted"
@@ -40,12 +46,12 @@
                     <span class="form-control text-truncate text-muted"
                         v-text="servicio.numero"></span>
                 </div>
-                <div class="form-group form-group-sm col-12 col-sm-6 col-md-4 mb-3">
+                <div class="form-group form-group-sm col-12 col-sm-6 col-md-4 col-lg-2 mb-3">
                     <label class="form-label">F. Reg. Servicio</label>
                     <span class="form-control text-truncate text-muted"
                         v-text="servicio.fecha"></span>
                 </div>
-                <div class="form-group form-group-sm col-12 col-sm-6 col-md-4 mb-3">
+                <div class="form-group form-group-sm col-12 col-sm-6 col-md-4 col-lg-2 mb-3">
                     <label class="form-label">F. Fin Servicio</label>
                     <span class="form-control text-truncate text-muted"
                         v-text="servicio.fechafin"></span>
